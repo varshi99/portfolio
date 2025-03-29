@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varshitha Pavuluri Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- FontAwesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #1e272e 0%, #2f3640 100%);
+      color: #dcdde1;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Sprinkles Animation */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+      animation: sprinkleMove 15s linear infinite;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    nav {
+      background: rgba(47, 54, 64, 0.95);
+      position: fixed;
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      animation: slideDown 0.5s ease-out;
+    }
+
+    .logo {
+      color: #dcdde1;
+      font-size: 1.5rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #dcdde1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff6b6b;
+      transform: translateY(-2px);
+    }
+
+    .home-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(45deg, #353b48, #1e272e);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-section::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+    }
+
+    .hero-text {
+      text-align: center;
+      color: #dcdde1;
+      animation: bounceIn 1s ease-out;
+      z-index: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-text p {
+      font-size: 1.5rem;
+      font-weight: 300;
+      animation: fadeIn 1.5s ease-out 0.5s both;
+    }
+
+    /* Floating Profile Picture on the Right */
+    .floating-profile-pic {
+      position: fixed;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      z-index: 1000;
+    }
+
+    .floating-profile-pic img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #ff6b6b;
+      transition: transform 0.3s ease;
+    }
+
+    .floating-profile-pic img:hover {
+      transform: scale(1.1);
+    }
+
+    section {
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: rgba(47, 54, 64, 0.9);
+      border-radius: 15px;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #dcdde1;
+      margin-bottom: 2rem;
+      position: relative;
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    h2::after {
+      content: '';
+      width: 50px;
+      height: 4px;
+      background: #ff6b6b;
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      animation: expand 1s ease-out;
+    }
+
+    .project, .education, .achievement {
+      background: rgba(53, 59, 72, 0.95);
+      padding: 2rem;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project:hover, .education:hover, .achievement:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .project-header, .education-header, .achievement-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .project i, .education i, .achievement i {
+      font-size: 1.5rem;
+      color: #54a0ff;
+    }
+
+    .project h3, .education h3, .achievement h3 {
+      color: #54a0ff;
+      font-size: 1.2rem;
+    }
+
+    .project p, .education p, .achievement p {
+      color: #dcdde1;
+      font-size: 1rem;
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      background: rgba(53, 59, 72, 0.95);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .skill-card:hover {
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .skill-card i {
+      font-size: 1.5rem;
+      color: #00d2d3;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card h3 {
+      color: #00d2d3;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .skill-card p {
+      color: #dcdde1;
+      font-size: 1rem;
+    }
+
+    #contact p {
+      margin: 1rem 0;
+      font-size: 1.1rem;
+    }
+
+    #contact a {
+      color: #54a0ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    #contact a:hover {
+      color: #ff6b6b;
+    }
+
+    footer {
+      background: #353b48;
+      color: #dcdde1;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      animation: fadeIn 1s ease-out;
+    }
+
+    /* Animations */
+    @keyframes slideDown {
+      from {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.05);
+      }
+      70% {
+        transform: scale(0.9);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes expand {
+      from {
+        width: 0;
+      }
+      to {
+        width: 50px;
+      }
+    }
+
+    @keyframes sprinkleMove {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 20px 20px;
+      }
+    }
+
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn 1s ease-out forwards;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        padding: 1rem;
+      }
+      
+      nav ul {
+        margin-top: 1rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+      
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-text p {
+        font-size: 1.2rem;
+      }
+
+      .floating-profile-pic {
+        position: static;
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">
+      Varshitha Pavuluri
+    </div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Floating Profile Picture -->
+  <div class="floating-profile-pic">
+    <img src="file:///C:/Users/varsh/OneDrive/Desktop/WhatsApp%20Image%202024-12-12%20at%2019.04.55_3e075d8e.jpg" alt="Profile Picture">
+  </div>
+
+  <!-- Home Section -->
+  <section id="home" class="home-section">
+    <div class="hero-text">
+      <h1>Hello, I'm Varshitha Pavuluri</h1>
+      <p>IT Student | Data Analytics | Web Developer</p>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      Graduating student of Bachelors in Information Technology from VVIT University, planning to finish my degree in June 2026. I have gained a solid knowledge of data analytics and am skilled with tools like Power BI and Tableau and programming languages like Python and SQL. I am interested in using technology to analyze and interpret complicated data, looking to inform decision-making and resolve real-life issues.
+    </p>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="education fade-in">
+      <div class="education-header">
+        <i class="fas fa-graduation-cap"></i>
+        <h3>Vasireddy Venkatadri International Technological University</h3>
+      </div>
+      <p>B.Tech in Information Technology, Expected in 2026</p>
+      <p>GPA: 8.72/10.0</p>
+    </div>
+    <div class="education fade-in">
+      <div class="education-header">
+        <i class="fas fa-school"></i>
+        <h3>Chaitanya Junior College</h3>
+      </div>
+      <p>Intermediate, 2020-2022</p>
+      <p>Percentage: 92.4/100.0</p>
+    </div>
+    <div class="education fade-in">
+      <div class="education-header">
+        <i class="fas fa-school"></i>
+        <h3>Viswabharathi High School</h3>
+      </div>
+      <p>SSC, 2020</p>
+      <p>Percentage: 100.0/100.0</p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project fade-in">
+      <div class="project-header">
+        <i class="fas fa-gamepad"></i>
+        <h3>Matching Game (Jan 2025 - Mar 2025)</h3>
+      </div>
+      <p>
+        Developed an interactive web-based game with HTML, CSS, and JavaScript. Created a dynamic game world mirroring everyday activity, emphasizing strategic thinking and problem-solving. Integrated engaging elements like animations, sound effects, and a beautiful UI to enrich user experience. Designed game mechanics that motivate critical thinking and user engagement, creating an enjoyable and learning-centric gameplay experience.
+      </p>
+      <p><strong>Tools Utilized:</strong> HTML, CSS, JavaScript, Animations, Sound Effects, Interactive UI</p>
+    </div>
+    <div class="project fade-in">
+      <div class="project-header">
+        <i class="fas fa-chart-line"></i>
+        <h3>Covid-19 Analysis (June 2024 - Sep 2024)</h3>
+      </div>
+      <p>
+        Created a COVID-19 forecasting model based on data analysis methodologies and statistical approaches. Preprocessed data by cleaning, normalizing, and managing missing values to make it ready for analysis. Applied statistical techniques to analyze trends, such as cumulative case numbers and growth rates, to predict future transmission. Visualized COVID-19 statistics in interactive graphs and charts to make the results easily accessible and understandable.
+      </p>
+      <p><strong>Tools Used:</strong> Python, Pandas, Matplotlib, Seaborn, COVID-19 Datasets</p>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-container">
+      <div class="skill-card fade-in">
+        <i class="fas fa-code"></i>
+        <h3>Programming Languages</h3>
+        <p>Python, SQL, JavaScript</p>
+      </div>
+      <div class="skill-card fade-in">
+        <i class="fas fa-globe"></i>
+        <h3>Web Development</h3>
+        <p>HTML, CSS, JavaScript, Databases</p>
+      </div>
+      <div class="skill-card fade-in">
+        <i class="fas fa-database"></i>
+        <h3>Data Management</h3>
+        <p>MySQL, DBMS</p>
+      </div>
+      <div class="skill-card fade-in">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Software Development</h3>
+        <p>DSA, OOPS</p>
+      </div>
+      <div class="skill-card fade-in">
+        <i class="fas fa-tools"></i>
+        <h3>Tools & Frameworks</h3>
+        <p>Git, VS Code</p>
+      </div>
+      <div class="skill-card fade-in">
+        <i class="fas fa-chart-bar"></i>
+        <h3>Visualization Tools</h3>
+        <p>Power BI, Tableau, Looker</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements">
+    <h2>Achievements & Certifications</h2>
+    <div class="achievement fade-in">
+      <div class="achievement-header">
+        <i class="fas fa-trophy"></i>
+        <h3>Student Coordinator, Training and Placement Cell</h3>
+      </div>
+      <p>Organized placement drives and workshops.</p>
+    </div>
+    <div class="achievement fade-in">
+      <div class="achievement-header">
+        <i class="fas fa-certificate"></i>
+        <h3>Python Certification</h3>
+      </div>
+      <p>Completed on HackerRank.</p>
+    </div>
+    <div class="achievement fade-in">
+      <div class="achievement-header">
+        <i class="fas fa-certificate"></i>
+        <h3>Python Basics for Data Science</h3>
+      </div>
+      <p>Certified by IBM.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:varshipavuluri99@gmail.com">varshipavuluri99@gmail.com</a></p>
+    <p>Phone: +91 9494424455</p>
+    <p>Location: Kaza, India</p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/pavuluri-varshitha-093960244" target="_blank">View Profile</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2023 Varshitha Pavuluri. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {a
+          if (entry.isIntersecting) {
+            entry.target.style.animationDelay = '0.2s';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+
+      fadeElements.forEach(element => observer.observe(element));
+    });
+  </script>
+</body>
+</html>
